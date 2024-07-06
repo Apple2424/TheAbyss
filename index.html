@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My GitHub Page</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <style>
+    /* Basic styles for loading screen */
+    #loading-screen {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background-color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    /* Loading spinner animation */
+    .spinner {
+      border: 16px solid #f3f3f3; /* Light grey */
+      border-top: 16px solid #3498db; /* Blue */
+      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+      animation: spin 2s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Styles for fade out */
+    .fade-out {
+      animation: fadeOut 1s forwards;
+    }
+
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="loading-screen" class="animate__animated animate__pulse animate__infinite">
+    <div class="spinner"></div>
+  </div>
+
+  <div id="content" style="display: none;">
+    <!-- Home page content here -->
+    <h1>The Abyss</h1>
+    <p>This is the main content of the site.</p>
+  </div>
+
+  <script>
+    // JavaScript to handle the loading screen
+    window.addEventListener('load', () => {
+      const loadingScreen = document.getElementById('loading-screen');
+      const content = document.getElementById('content');
+
+      // After 5 seconds, fade out the loading screen and show the content
+      setTimeout(() => {
+        loadingScreen.classList.add('fade-out');
+        setTimeout(() => {
+          loadingScreen.style.display = 'none';
+          content.style.display = 'block';
+          content.classList.add('animate__animated', 'animate__fadeIn');
+        }, 1000); // Match this timeout with the fade-out animation duration
+      }, 5000); // 5 seconds delay
+    });
+  </script>
+</body>
+</html>
