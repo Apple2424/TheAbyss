@@ -19,6 +19,15 @@ body {
   height: 100vh;
   background-color: #2a2a2a;
   color: #87cefa;
+  transition: opacity 1s; /* Add transition for fade effect */
+  opacity: 1;
+}
+
+/* Main Content styles */
+#main-content {
+  display: none;
+  opacity: 0;
+  transition: opacity 1s; /* Add transition for fade effect */
 }
 
 /* Header styles */
