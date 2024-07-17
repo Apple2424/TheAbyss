@@ -148,7 +148,19 @@
         }, 1000); // Wait for loading screen to fade out
       }, 5000); // 5 seconds delay
 
-      document.getElementById('background-music').play();
+      var music = document.getElementById('background-music');
+
+      // Try to play music
+      music.play().catch(function() {
+        console.log('Autoplay was prevented. Click the button to play music.');
+      });
+
+      // Add event listener for user interaction to play music
+      document.body.addEventListener('click', function() {
+        if (music.paused) {
+          music.play();
+        }
+      });
     });
 
     function toggleMusic() {
