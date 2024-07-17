@@ -88,7 +88,7 @@
 <body>
   <!-- Loading Screen -->
   <div id="loading-screen">
-    <h1 class="animate__animated animate__pulse">The Abyss</h1>
+    <h1 class="animate__animated animate__pulse animate__infinite">The Abyss</h1>
   </div>
 
   <!-- Main Content -->
@@ -132,9 +132,19 @@
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       setTimeout(function() {
-        document.getElementById('loading-screen').style.display = 'none';
-        document.getElementById('main-content').style.display = 'block';
-        document.getElementById('background-music').play();
+        var loadingScreen = document.getElementById('loading-screen');
+        var mainContent = document.getElementById('main-content');
+
+        loadingScreen.style.opacity = '0';
+        mainContent.style.display = 'block';
+        
+        setTimeout(function() {
+          mainContent.style.opacity = '1';
+        }, 1000); // Wait for loading screen to fade out
+
+        setTimeout(function() {
+          loadingScreen.style.display = 'none';
+        }, 1000); // Wait for loading screen to be hidden
       }, 5000); // 5 seconds delay
     });
 
