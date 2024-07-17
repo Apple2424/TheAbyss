@@ -151,8 +151,8 @@
       var music = document.getElementById('background-music');
 
       // Try to play music
-      music.play().catch(function() {
-        console.log('Autoplay was prevented. Click the button to play music.');
+      music.play().catch(function(error) {
+        console.log('Autoplay was prevented. Click the button to play music. Error:', error);
       });
 
       // Add event listener for user interaction to play music
@@ -160,6 +160,21 @@
         if (music.paused) {
           music.play();
         }
+      });
+
+      // Debugging: Log when music plays
+      music.addEventListener('play', function() {
+        console.log('Music is playing.');
+      });
+
+      // Debugging: Log when music pauses
+      music.addEventListener('pause', function() {
+        console.log('Music is paused.');
+      });
+
+      // Debugging: Log when music ends
+      music.addEventListener('ended', function() {
+        console.log('Music ended.');
       });
     });
 
