@@ -22,10 +22,14 @@
       background-color: #2a2a2a;
       color: #2e8b57;
       font-size: 2em;
+      opacity: 1;
+      transition: opacity 1s ease;
     }
 
     #main-content {
       display: none;
+      opacity: 0;
+      transition: opacity 1s ease;
     }
 
     .container {
@@ -113,7 +117,7 @@
     <main>
       <div class="hero">
         <div class="overlay">
-          <h1 class="animate__animated animate__pulse">NORTHWICH</h1>
+          <h1 class="animate__animated animate__pulse">Abyss</h1>
           <p>The Future of Unturned RP</p>
           <div class="buttons">
             <button onclick="location.href='#';">Connect To Server</button>
@@ -125,7 +129,7 @@
   </div>
 
   <audio id="background-music" loop>
-    <source src="audio/FromtheAbyss.mp3" type="audio/mp3">
+    <source src="audio/FromtheAbyss.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
 
@@ -136,16 +140,15 @@
         var mainContent = document.getElementById('main-content');
 
         loadingScreen.style.opacity = '0';
-        mainContent.style.display = 'block';
         
         setTimeout(function() {
+          mainContent.style.display = 'block';
           mainContent.style.opacity = '1';
-        }, 1000); // Wait for loading screen to fade out
-
-        setTimeout(function() {
           loadingScreen.style.display = 'none';
-        }, 1000); // Wait for loading screen to be hidden
+        }, 1000); // Wait for loading screen to fade out
       }, 5000); // 5 seconds delay
+
+      document.getElementById('background-music').play();
     });
 
     function toggleMusic() {
