@@ -6,19 +6,97 @@
   <title>The Abyss</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   <link rel="stylesheet" href="styles.css"/>
+  <style>
+    body {
+      background-color: #2a2a2a;
+      color: #2e8b57;
+      font-family: Arial, sans-serif;
+      user-select: none; /* Prevent text selection */
+    }
+
+    #loading-screen {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #2a2a2a;
+      color: #2e8b57;
+      font-size: 2em;
+    }
+
+    #main-content {
+      display: none;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .logo img {
+      height: 50px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #87cefa;
+      font-size: 1.2em;
+    }
+
+    .hero {
+      position: relative;
+      text-align: center;
+      color: #fff;
+      height: 100vh;
+      background: url('hero-background.jpg') no-repeat center center/cover;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .buttons {
+      margin-top: 20px;
+    }
+
+    .buttons button {
+      background-color: #87cefa;
+      color: #2a2a2a;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1em;
+      cursor: pointer;
+      margin: 0 10px;
+    }
+
+    .buttons button:hover {
+      background-color: #2e8b57;
+    }
+  </style>
 </head>
 <body>
   <!-- Loading Screen -->
   <div id="loading-screen">
-    <h1 class="animate__animated animate__pulse animate__infinite">The Abyss</h1>
+    <h1 class="animate__animated animate__pulse">The Abyss</h1>
   </div>
-  
+
   <!-- Main Content -->
-  <div id="main-content" style="display: none;">
+  <div id="main-content">
     <header>
       <div class="container">
         <div class="logo">
-          <img src="image/logo.png" alt="Logo"> <!-- Replace with your logo image -->
+          <img src="logo.png" alt="Logo"> <!-- Replace with your logo image -->
         </div>
         <nav>
           <ul>
@@ -26,16 +104,17 @@
             <li><a href="#">Vote</a></li>
             <li><a href="#">Updates</a></li>
             <li><a href="#">Store</a></li>
+            <li><button id="toggle-music" onclick="toggleMusic()">🔊</button></li>
           </ul>
         </nav>
       </div>
     </header>
-    
+
     <main>
       <div class="hero">
         <div class="overlay">
-          <h1 class="animate__animated animate__pulse">The Abyss</h1>
-          <p>From the depth of the hollow</p>
+          <h1 class="animate__animated animate__pulse">NORTHWICH</h1>
+          <p>The Future of Unturned RP</p>
           <div class="buttons">
             <button onclick="location.href='#';">Connect To Server</button>
             <button onclick="location.href='https://discord.gg/8ChQEtFWVb';">Discord</button>
@@ -45,24 +124,31 @@
     </main>
   </div>
 
+  <audio id="background-music" loop>
+    <source src="background-music.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       setTimeout(function() {
-        var loadingScreen = document.getElementById('loading-screen');
-        var mainContent = document.getElementById('main-content');
-
-        loadingScreen.style.opacity = '0';
-        mainContent.style.display = 'block';
-        
-        setTimeout(function() {
-          mainContent.style.opacity = '1';
-        }, 1000); // Wait for loading screen to fade out
-
-        setTimeout(function() {
-          loadingScreen.style.display = 'none';
-        }, 1000); // Wait for loading screen to be hidden
+        document.getElementById('loading-screen').style.display = 'none';
+        document.getElementById('main-content').style.display = 'block';
+        document.getElementById('background-music').play();
       }, 5000); // 5 seconds delay
     });
+
+    function toggleMusic() {
+      var music = document.getElementById('background-music');
+      var button = document.getElementById('toggle-music');
+      if (music.paused) {
+        music.play();
+        button.innerHTML = '🔊';
+      } else {
+        music.pause();
+        button.innerHTML = '🔈';
+      }
+    }
   </script>
 </body>
 </html>
